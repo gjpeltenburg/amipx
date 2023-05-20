@@ -1,0 +1,10 @@
+##base _AMIPX_Library
+##bias 30
+##public
+AMIPX_OpenSocket(socknum)(D0)
+AMIPX_CloseSocket(socknum)(D0)
+AMIPX_ListenForPacket(ecb)(A0)
+AMIPX_SendPacket(ecb)(A0)
+AMIPX_GetLocalAddr(addrspace)(A0)
+AMIPX_RelinquishControl()()
+AMIPX_GetLocalTarget(address,localtarget)(a0,a1)
