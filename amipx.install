@@ -1,0 +1,65 @@
+; Installs amipx.library
+
+
+
+(complete 0)
+
+(set #libdir 
+ (askdir
+  (prompt "Please select the drawer where you want\n"
+          "to install amipx.library ."
+  )
+  (help @askdir-help)
+  (default "LIBS:")
+ )
+)
+(complete 20)
+
+(copylib
+ (source "Libs/amipx.library")
+ (dest #libdir)
+ (help "The Amiga IPX compatibility library is used\n"
+       "by AMIPX applications. If the application\n"
+       "cannot find amipx.library, it will not work."
+ )
+)
+(complete 40)
+
+(set #prefdir
+ (askdir
+  (prompt "Please select the drawer where you want\n"
+          "to install the preferences program."
+  )
+  (help @askdir-help)
+  (default "SYS:Prefs")
+ )
+)
+(complete 60)
+
+(copyfiles
+ (source "amipx_prefs")
+ (dest #prefdir)
+ (help "The Amiga IPX library needs to be set up\n"
+       "before it can be used. The preferences\n"
+       "editor is used for that."
+ )
+)
+
+(complete 80)
+
+(set #prefed (tackon #prefdir "amipx_prefs"))
+(run #prefed
+ (prompt "To complete your setup, the preferences\n"
+         "editor will now start."
+ )
+ (help   "The preferences editor is used to set up\n"
+         "the network interface to use, and some\n"
+         "values that are specific to your network."
+ )
+ (confirm)
+) 
+
+(complete 100)
+(set @default-dest #libdir)
+(exit)
+
